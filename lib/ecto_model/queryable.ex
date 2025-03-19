@@ -58,10 +58,10 @@ defmodule EctoModel.Queryable do
   - Equality (`==`) via `field: value`
   - Inclusion (`in`) via `field: [value1, value2]`
   - Exclusion (`not in`) via `field: {:not, [value1, value2]}`
-  - Greater than (`>`) via `field: {:gt, value} or field: {:>, value}`
-  - Greater than or equal to (`>=`) via `field: {:gte, value} or field: {:>=, value}`
-  - Less than (`<`) via `field: {:lt, value} or field: {:<, value}`
-  - Less than or equal to (`<=`) via `field: {:lte, value} or field: {:<=, value}`
+  - Greater than (`>`) via `field: {:gt, value}` or `field: {:>, value}`
+  - Greater than or equal to (`>=`) via `field: {:gte, value}` or `field: {:>=, value}`
+  - Less than (`<`) via `field: {:lt, value}` or `field: {:<, value}`
+  - Less than or equal to (`<=`) via `field: {:lte, value}` or `field: {:<=, value}`
   - Is null (`nil`) via `field: nil`
   - Is not null (`not nil`) via `field: {:not, nil}`
   - Like (`like %value&`) via `field: ~r/value/`
@@ -69,10 +69,10 @@ defmodule EctoModel.Queryable do
 
   Additionally, while not filters in the traditional sense, the following options are also supported:
 
-  - Preloading (`preload`) via `preload: :association or preload: [:association1, :association2]`
+  - Preloading (`preload`) via `preload: :association` or `preload: [:association1, :association2]`
   - Limiting (`limit`) via `limit: 10`
   - Offsetting (`offset`) via `offset: 10`
-  - Ordering (`order_by`) via `order_by: :field or order_by: {:desc, :field} or order_by: [:field1, :field2]`
+  - Ordering (`order_by`) via `order_by: :field` or `order_by: {:desc, :field}` or `order_by: [:field1, :field2]`
   """
 
   import Ecto.Query
