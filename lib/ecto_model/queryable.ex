@@ -66,6 +66,7 @@ defmodule EctoModel.Queryable do
   - Is not null (`not nil`) via `field: {:not, nil}`
   - Like (`like %value&`) via `field: ~r/value/`
   - Case insensitive Like (`ilike %value&`) via `field: ~r/value/i`
+  - Distinct (`distinct on`) via `distinct: value` or `distinct: [value1, value2]`
 
   Additionally, while not filters in the traditional sense, the following options are also supported:
 
@@ -143,6 +144,10 @@ defmodule EctoModel.Queryable do
 
   def apply_filter(query, {:order_by, value}) do
     from(x in query, order_by: [{:desc, ^value}])
+  end
+
+  def apply_filter(query, {:distinct, value}) do
+    from(x in query, distinct: ^value)
   end
 
   def apply_filter(query, {:inserted_at_start, inserted_at}) when is_struct(inserted_at) do

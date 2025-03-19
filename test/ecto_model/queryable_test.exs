@@ -417,6 +417,28 @@ defmodule EctoModel.QueryableTest do
       assert Enum.at(params, 0) == now
     end
 
+    test "is able to query with distinct on a single field", ctx do
+      refute is_struct(ctx.query, Ecto.Query)
+
+      assert {query, params} =
+               ctx.query
+               |> Queryable.apply_filter({:distinct, :breed})
+               |> then(&Repo.to_sql(:all, &1))
+
+      assert query =~ "DISTINCT ON (d0.\"breed\")"
+    end
+
+    test "is able to query with distinct on a multiple fields", ctx do
+      refute is_struct(ctx.query, Ecto.Query)
+
+      assert {query, params} =
+               ctx.query
+               |> Queryable.apply_filter({:distinct, [:breed, :date_of_birth]})
+               |> then(&Repo.to_sql(:all, &1))
+
+      assert query =~ "DISTINCT ON (d0.\"breed\", d0.\"date_of_birth\")"
+    end
+
     test "does nothing with unsupported filters", ctx do
       refute is_struct(ctx.query, Ecto.Query)
       assert ctx.query == Queryable.apply_filter(ctx.query, :unsupported)
