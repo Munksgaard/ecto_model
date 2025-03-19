@@ -1,5 +1,5 @@
 defmodule EctoModel.Queryable do
-  @moduledoc """
+  @moduledoc ~S"""
   A behaviour for defining a `query/2` callback that can be used as an easy-to-use and fluent DSL for building
   Ecto queries in a consistent manner across different schemas.
 

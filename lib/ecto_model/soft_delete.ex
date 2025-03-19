@@ -1,5 +1,5 @@
 defmodule EctoModel.SoftDelete do
-  @moduledoc """
+  @moduledoc ~S"""
   Module responsible for allowing your schemas to opt into soft delete functionality.
 
   ## Usage
